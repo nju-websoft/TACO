@@ -1,0 +1,27 @@
+{
+  "_comment": "Qwen2.5-0.5B | ZeRO-2 | 推荐 1~2 张 RTX 4090 | micro_batch=4 轻松跑满",
+  "train_micro_batch_size_per_gpu": 1,
+  "gradient_accumulation_steps": 4,
+  "gradient_clipping": 1.0,
+  "optimizer": {
+    "type": "AdamW",
+    "params": {
+      "lr": 5e-6,
+      "betas": [0.9, 0.999],
+      "eps": 1e-8,
+      "weight_decay": 0.1
+    }
+  },
+  "zero_optimization": {
+    "stage": 2,
+    "allgather_partitions": true,
+    "allgather_bucket_size": 2e8,
+    "overlap_comm": true,
+    "reduce_scatter": true,
+    "reduce_bucket_size": 2e8,
+    "contiguous_gradients": true
+  },
+  "bf16": {
+    "enabled": true
+  }
+}

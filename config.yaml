@@ -1,0 +1,69 @@
+bd:
+  base_api_model_name: qwen2.5-0.5b
+  base_model_path: /data/fqzhou/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B
+  base_model_url: http://210.28.135.171:8250/v1
+  
+  embed_api_model_name: bge-m3
+  embed_model_path: /data/fqzhou/.cache/modelscope/hub/models/BAAI/bge-m3
+  embed_url: http://210.28.135.171:8003/v1
+
+  max_tokens: 8192
+
+  chat_device: '2'
+  embed_device: 0
+
+  base_url: https://llmapi.paratera.com/v1
+  api_key: sk-J1nxjdmUhKZO__EmoPTpiA
+  model: GLM-5
+  subagent_model: DeepSeek-V3.2-Exp
+
+  reasoning_effort: low
+  temperature: 0.01
+
+base_model_filter:
+  metrics_batch_size: 16
+  inner_metrics_bs: 4
+  
+limits:
+  keep_recent_chars: 5000
+  max_context_chars: 30000
+
+provider: bd
+
+security:
+  allow_outside_root: true
+
+target_num: 10000
+
+rough_filter_min_retention: 0.9
+
+fine_filter:
+  samples_per_round: 50
+  num_batches: 5
+
+superfiltering:
+  model_name_or_path: /data/fqzhou/.cache/modelscope/hub/models/Qwen/Qwen2.5-0.5B
+  max_length: 4096
+  sample_rate: 0.1
+  filter_threshold: 1.0
+  key_name: ifd_ppl
+  target_num: 10000
+
+alpagasus:
+  base_url: https://llmapi.paratera.com/v1
+  api_key: sk-J1nxjdmUhKZO__EmoPTpiA
+  model: DeepSeek-V3.2-Exp
+
+select2reason:
+  alpha: 0.5 
+  difficulty_metric: length
+  tokenizer_path: /data/fqzhou/.cache/modelscope/hub/models/allenai/Olmo-3-1025-7B
+  base_url: https://llmapi.paratera.com/v1
+  api_key: sk-J1nxjdmUhKZO__EmoPTpiA
+  model: DeepSeek-V3.2-Exp
+
+mig:
+  num_clusters: 200
+  graph_prune_threshold: 0.7
+  propagate_alpha: 0.5
+  info_fn: sqrt
